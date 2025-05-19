@@ -1,3 +1,4 @@
 /.devcontainer
 /lab1/.*
 /lab1/*.json
+/lab3/pgdata
