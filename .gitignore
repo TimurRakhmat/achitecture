@@ -2,3 +2,5 @@
 /lab1/.*
 /lab1/*.json
 /lab3/pgdata
+/lab4/pgdata
+/lab4/mongodbdata
