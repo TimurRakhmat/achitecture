@@ -8,7 +8,14 @@ workspace  {
             
             description "Веб-приложение для организации конференций"
 
-            db = container "База данных" {
+            dbSql = container "База данных" {
+                description "База данных для хранения информации о пользователях, докладах и конференциях"
+                technology "PostgreSQL"
+                tags "Database"
+                
+            }
+
+            dbNoSql = container "База данных" {
                 description "База данных для хранения информации о пользователях, докладах и конференциях"
                 technology "PostgreSQL"
                 tags "Database"
@@ -20,21 +27,21 @@ workspace  {
                 technology "FastApi"
                 component "Conference User"
                 component "Login"
-                -> db "Создание нового пользователя или поиск существующего"
+                -> dbSql "Создание нового пользователя или поиск существующего"
             }
 
             lecture_control = container "Система контроля докладов" {
                 description "Создание и управление всеми докладами"
                 technology "FastApi"
                 component "Lecture"
-                -> db "Создание нового доклада/поиск существующего"
+                -> dbNoSql "Создание нового доклада/поиск существующего"
             }
 
             conference_control = container "Система контроля конференций" {
                 description "Создание и управление всеми конференциями"
                 technology "FastApi"
                 component "Conference"
-                -> db "Создание новой конференции/поиск существующей"
+                -> dbNoSql "Создание новой конференции/поиск существующей"
             }
 
             web_interface = container "Веб-интерфейс" {
@@ -81,10 +88,10 @@ workspace  {
             title "Добавление доклада в конференцию"
             user -> conference_organization.web_interface "Создание доклада"
             conference_organization.web_interface -> conference_organization.lecture_control "POST /lecture"
-            conference_organization.lecture_control -> conference_organization.db "Сохранение доклада"
+            conference_organization.lecture_control -> conference_organization.dbNoSql "Сохранение доклада"
             conference_organization.lecture_control -> conference_organization.web_interface "Получение id доклада"
             conference_organization.web_interface -> conference_organization.conference_control "POST /conference/lecture"
-            conference_organization.conference_control -> conference_organization.db "Обновление конференции"
+            conference_organization.conference_control -> conference_organization.dbNoSql "Обновление конференции"
             autoLayout lr
         }
         
@@ -92,7 +99,7 @@ workspace  {
             title "Создание пользователя"
             user -> conference_organization.web_interface "Заполнение формы регистрации"
             conference_organization.web_interface -> conference_organization.user_control "POST /conference_user"
-            conference_organization.user_control -> conference_organization.db "Сохранение данных"
+            conference_organization.user_control -> conference_organization.dbSql "Сохранение данных"
             autoLayout lr
         }
     }
