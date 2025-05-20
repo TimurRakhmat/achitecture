@@ -1,0 +1,95 @@
+root@4f130880afbd:/app/test# ./testwrk.sh 
+      1 thread:
+With redis:
+Running 10s test @ http://localhost:8000
+  1 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.31ms    7.30ms 119.53ms   98.92%
+    Req/Sec     6.09k   572.41     6.48k    96.04%
+  Latency Distribution
+     50%    1.56ms
+     75%    1.70ms
+     90%    1.91ms
+     99%   16.92ms
+  61252 requests in 10.14s, 11.16MB read
+  Non-2xx or 3xx responses: 61252
+Requests/sec:   6039.76
+Transfer/sec:      1.10MB
+Without redis:
+Running 10s test @ http://localhost:8000
+  1 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.65ms  254.87us   5.30ms   86.41%
+    Req/Sec     6.04k   211.16     6.57k    75.00%
+  Latency Distribution
+     50%    1.58ms
+     75%    1.72ms
+     90%    1.93ms
+     99%    2.60ms
+  60070 requests in 10.00s, 10.94MB read
+  Non-2xx or 3xx responses: 60070
+Requests/sec:   6006.31
+Transfer/sec:      1.09MB
+      5 threads:
+With redis:
+Running 10s test @ http://localhost:8000
+  5 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.76ms  620.33us   6.99ms   68.42%
+    Req/Sec     1.14k   183.01     1.45k    62.20%
+  Latency Distribution
+     50%    1.55ms
+     75%    2.23ms
+     90%    2.65ms
+     99%    3.37ms
+  56623 requests in 10.00s, 10.31MB read
+  Non-2xx or 3xx responses: 56623
+Requests/sec:   5660.47
+Transfer/sec:      1.03MB
+Without redis:
+Running 10s test @ http://localhost:8000
+  5 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.20ms    5.93ms 113.19ms   99.19%
+    Req/Sec     1.15k   248.73     1.69k    60.00%
+  Latency Distribution
+     50%    1.53ms
+     75%    2.23ms
+     90%    2.60ms
+     99%    3.82ms
+  58169 requests in 10.20s, 10.60MB read
+  Non-2xx or 3xx responses: 58169
+Requests/sec:   5703.63
+Transfer/sec:      1.04MB
+      10 threads:
+With redis:
+Running 10s test @ http://localhost:8000
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.82ms  653.92us   7.47ms   75.86%
+    Req/Sec   552.05    138.22   740.00     59.50%
+  Latency Distribution
+     50%    1.51ms
+     75%    2.20ms
+     90%    2.86ms
+     99%    3.62ms
+  54991 requests in 10.01s, 10.02MB read
+  Non-2xx or 3xx responses: 54991
+Requests/sec:   5494.29
+Transfer/sec:      1.00MB
+Without redis:
+Running 10s test @ http://localhost:8000
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.42ms  526.14us   4.65ms   73.40%
+    Req/Sec   706.12    202.49     2.36k    60.72%
+  Latency Distribution
+     50%    1.18ms
+     75%    1.89ms
+     90%    2.18ms
+     99%    2.78ms
+  56368 requests in 10.10s, 10.27MB read
+  Socket errors: connect 2, read 0, write 0, timeout 0
+  Non-2xx or 3xx responses: 56368
+Requests/sec:   5580.99
+Transfer/sec:      1.02MB
